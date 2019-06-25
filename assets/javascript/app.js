@@ -4,9 +4,16 @@
     var queryUrl="https://api.nytimes.com/svc/search/v2/articlesearch.json?"
     var queryParams={"api-key":"qwoC4AFp6dTecyJQH6IGVYaHWmZBUPhI"};
     queryParams.q=$("#search-term").val().trim();
-    queryParams.begin_date=$("#start-year").val().trim()+"0101";
-    queryParams.end_date=$("#end-year").val().trim()+"0101";
 
+    var startYear= $("#start-year").val().trim();
+    if (startYear){
+        queryParams.begin_date=startYear+"0101";
+    }
+    var endYear=$("#end-year").val().trim();
+    if (endYear){
+        queryParams.end_date=endYear+"0101";
+    }
+    
     return queryUrl+$.param(queryParams);
     console.log(queryParams)
    }

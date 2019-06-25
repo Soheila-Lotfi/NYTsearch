@@ -1,13 +1,30 @@
 
+  function buildQueryUrl(){
+
+    var queryUrl="https://api.nytimes.com/svc/search/v2/articlesearch.json?"
+    var queryParams={"api-key":"qwoC4AFp6dTecyJQH6IGVYaHWmZBUPhI"};
+    queryParams.q=$("#search-term").val().trim();
+    queryParams.begin_date=$("#start-year").val().trim()+"0101";
+    queryParams.end_date=$("#end-year").val().trim()+"0101";
+
+    return queryUrl+$.param(queryParams);
+    console.log(queryParams)
+   }
+
 $("#searchbtn").click(function(event){
     event.preventDefault();
-    var searchTerm= $("#search-term").val().trim();
-    var startYear=$("#start-year").val().trim();
-    var endYear=$("#end-year").val().trim();
-    var numberofRecordes=$("#numberofrecords").val().trim();
-    console.log(numberofRecordes);
-    var queryUrl= "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+searchTerm+"&begin_date="+startYear+"0101&end_date="+endYear+"0101&api-key=qwoC4AFp6dTecyJQH6IGVYaHWmZBUPhI";
+    // var searchTerm= $("#search-term").val().trim();
+    // var startYear=$("#start-year").val().trim();
+    // var endYear=$("#end-year").val().trim();
+     var numberofRecordes=$("#numberofrecords").val().trim();
+    // console.log(numberofRecordes);
+    // var queryUrl= "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+searchTerm+"&begin_date="+startYear+"0101&end_date="+endYear+"0101&api-key=qwoC4AFp6dTecyJQH6IGVYaHWmZBUPhI";
     
+    //build query url using @param - The param() method creates a serialized representation
+    // of an array or an object.The serialized values can be used in the URL query string when
+    // making an AJAX request.
+  var queryUrl=buildQueryUrl();
+  console.log(queryUrl)
     $.ajax({
         url: queryUrl,
         method:"GET"
